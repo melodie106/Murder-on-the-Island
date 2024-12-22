@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html>
+    <link href='https://fonts.googleapis.com/css?family=Julee' rel='stylesheet'>
+    <script>
+document.addEventListener('DOMContentLoaded', () => {
+    let selectedCharacter = null; // Store the selected character
+    let tapTimer = null; // Timer to differentiate between single and double taps
+    const DOUBLE_TAP_DELAY = 300; // Delay between taps (in milliseconds)
+
+    // Get the loading overlay element
+    const loadingOverlay = document.getElementById('loadingOverlay');
+
+    // Get all character buttons
+    const characterButtons = document.querySelectorAll('.character-button');
+
+    // Add single and double-tap events to character buttons
+    characterButtons.forEach((button) => {
+        let tapCount = 0; // Track the number of taps
+
+        button.addEventListener('click', (event) => {
+            tapCount++;
+
+            // Clear the timer for the previous tap
+            if (tapTimer) {
+                clearTimeout(tapTimer);
+            }
+
+            // Set a timer to handle single or double taps
+            tapTimer = setTimeout(() => {
+                if (tapCount === 1) {
+                    // Handle single tap: select character
+                    characterButtons.forEach((btn) => btn.classList.remove('selected')); // Deselect others
+                    button.classList.add('selected'); // Highlight selected button
+                    selectedCharacter = button.dataset.character; // Store selected character
+                } else if (tapCount === 2) {
+                    // Show loading overlay
+                    loadingOverlay.style.display = 'flex';
+
+                    // Handle double tap: submit form for alibi
+                    setTimeout(() => {
+                        button.closest('form').submit();
+                    }, 500); // Add slight delay for animation
+                }
+                tapCount = 0; // Reset tap count
+            }, DOUBLE_TAP_DELAY); // Wait for the second tap
+        });
+    });
+
+    // Handle the "선택하기" button for confirmation
+    const confirmButton = document.getElementById('confirmButton');
+    confirmButton.addEventListener('click', (event) => {
+        event.preventDefault(); // Prevent default behavior
+        if (selectedCharacter) {
+            // Show loading overlay
+            loadingOverlay.style.display = 'flex';
+
+            // Redirect to the item selection page for the selected character
+            setTimeout(() => {
+                window.location.href = `/choose_item/${selectedCharacter}`;
+            }, 500); // Add slight delay for animation
+        } else {
+            alert('먼저 캐릭터를 선택해주세요!');
+        }
+    });
+});
+
+        </script>        
+    <style>
+        /* CSS Styling for the page */
+        @font-face {
+            font-family: 'ChosunSm';
+            src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_20-04@1.1/ChosunSm.woff') format('woff');
+            font-weight: normal;
+            font-style: normal;
+        }
+        
+        body {
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: url('static/background.png') no-repeat center center fixed;
+            background-size: cover;
+            font-family: Arial, sans-serif;
+            color: white;
+            overflow-y: auto;
+        }
+
+        .container {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            width: 1300px;
+            height: 500px;
+            padding: 10px;
+            margin-top: 20px;
+            background: rgba(0, 0, 0, 0.7);
+            border-radius: 15px;
+        }
+
+        .title-container {
+            text-align: center;
+            margin-bottom: 10px;
+            margin-top: 10px;
+        }
+
+
+        .characters-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); /* Adjust the min/max size of grid items */
+    width: 100%; /* Full width */
+    text-align: center; /* Center-align content */
+    padding: 20px; /* Add padding around the grid */
+    margin-top: 4px; /* Space above the grid */
+}
+
+.character-button {
+    width: 185px; /* Width of each character button */
+    height: 330px; /* Height of each character button */
+    background: rgba(0, 0, 0, 0.8); /* Background color */
+    color: white; /* Text color */
+    border: 2px solid white; /* Border */
+    border-radius: 10px; /* Rounded corners */
+    cursor: pointer;
+    display: flex; /* Flexbox for layout */
+    flex-direction: column; /* Stack items vertically */
+    align-items: center; /* Center items horizontally */
+    justify-content: flex-start; /* Align items to the top */
+    padding: 8px; /* Inner padding */
+    font-family: 'ChosunSm'; /* Apply font */
+}
+
+.character-button:hover {
+    background: white;
+    color: black;
+    border: 2px solid black;
+}
+
+        .character {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .character-name {
+            font-family: 'GabiaCheongyeon';
+            font-size: 16px;
+            margin-bottom: 4px;
+        }
+
+        .character-items {
+            margin: 8px 0 0 0; /* Add some spacing */
+    padding: 0;
+    list-style-type: none; /* Remove default list bullets */
+    text-align: left; /* Align list text to the left */
+    font-family: 'ChosunSm'; /* Ensure font consistency */
+    font-size: 12px; /* Set an appropriate size */
+    }
+
+    .character-items li {
+    display: flex; /* Flexbox to align icon and text */
+    align-items: center; /* Center icon vertically with text */
+    margin: 4px 0; /* Add spacing between items */    }
+
+    .icon {
+        background-size: 14px 14px; /* Keep the same size */
+        background: url('static/knife_3745877.png') no-repeat center center; /* White icon on hover */
+    }
+
+    .character-items li img.icon {
+    width: 14px; /* Icon width */
+    height: 14px; /* Icon height */
+    margin-right: 8px; /* Space between icon and text */
+    filter: invert(1); /* Makes the icon white */
+    transition: filter 0.3s ease; /* Smooth transition for color change */
+}
+
+/* When the button is selected, change the icon color */
+button.selected .character-items li img.icon {
+    filter: invert(0); /* Resets the icon to its original color (e.g., black) */
+}
+
+        button {
+        width: 200px; /* Increased width */
+        height: 300px; /* Increased height */
+        background: rgba(0, 0, 0, 0.8);
+        color: white;
+        border: 2px solid white;
+        border-radius: 10px;
+        cursor: pointer;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+        padding: 10px;
+        font-family: 'ChosunSm'; /* Apply specified font-family */
+    }
+
+    /* Highlight selected button */
+    button.selected {
+        background: white;
+        color: black;
+        border: 2px solid black;
+    }
+
+    button:hover {
+        background: white;
+        color: black;
+        border: 2px solid black;
+    }
+
+
+      .character-image {
+        width: 150px; /* Increased image width */
+        height: 200px; /* Increased image height */
+        object-fit: cover;
+        border-radius: 10%; /* Slightly larger rounding for images */
+        margin-bottom: 8px;
+    }
+
+
+/* Loading overlay styles */
+#loadingOverlay {
+            display: none; /* Initially hidden */
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            justify-content: center;
+            align-items: center;
+            z-index: 999;
+        }
+
+        .loading-text {
+            font-family: 'GabiaCheongyeon';
+            font-size: 36px;
+            color: white;
+            margin-top: 20px;
+        }
+
+        .spinner {
+            width: 60px;
+            height: 60px;
+            border: 6px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            border-top-color: white;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        @font-face {
+    font-family: 'GabiaCheongyeon';
+    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2205@1.0/GabiaCheongyeon.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+
+
+.button-container1 {
+    position: absolute; /* Position relative to the container */
+    bottom: 20px; /* Offset from the bottom */
+    right: 20px; /* Offset from the right */
+}
+
+.button1 {
+    width: 200px; /* Set the desired width */
+    height: 50px; /* Set the desired height */
+    background: url('{{ url_for("static", filename="Button.png") }}') no-repeat center center;
+    background-size: contain; /* Ensure the image fits without cropping */
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    font-family: 'GabiaCheongyeon'; /* Apply specified font-family */
+    font-size: 20px; /* Adjust text size */
+    font-weight: 400; /* Apply specified font-weight */
+    text-align: center; /* Center the text horizontally */
+    line-height: 50px; /* Matches the button height for vertical centering */
+    color: white; /* Text color */
+    display: inline-block; /* Ensure text stays inline */
+    vertical-align: middle; /* Align text vertically */
+}
+
+.button1:hover {
+    opacity: 0.8; /* Slightly fade the button on hover */
+}
+
+p {     
+                font-family: 'ChosunSm';
+                font-size: 16px;
+                font-weight: 400;
+                line-height: 26.18px;
+                text-align: center;
+                text-underline-position: from-font;
+                text-decoration-skip-ink: none;
+                margin: 1px 0; /* Add vertical spacing */
+            }
+
+                h1 {
+                    font-family: 'GabiaCheongyeon';
+                    font-size: 32px;
+                    font-weight: 400;
+                    line-height: 1.2; /* Reduce spacing between lines */
+                    text-align: center; /* Center the title */
+                    margin: 0; /* Remove margin */
+                    margin-bottom: 4px; /* Add space below the title */
+                }
+
+                @font-face {
+    font-family: 'GabiaCheongyeon';
+    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2205@1.0/GabiaCheongyeon.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+html {
+    touch-action: manipulation; /* Allows panning and scrolling but prevents double-tap zoom */
+}
+
+    
+    </style>
+<head>
+    <title>Choose a Character</title>
+</head>
+<body>
+    <div class="container">
+        <div class="title-container">
+            <h1>선택의 순간입니다...</h1>
+            <p>모든 정보를 수집했고 이제 누가 범인인지 결정해야 합니다.</p>
+            <p>캐릭터를 <strong>한 번 클릭</strong>하여 선택하고, <strong>두 번 클릭</strong>하여 해당 캐릭터의 알리바이를 확인하세요. 선택은 신중하게 하세요...!</p>
+        </div>
+
+        <div class="characters-container">
+            {% for key, value in characters.items() %}
+            <form method="get" action="{{ url_for('character_page', character_key=key) }}">
+                <button type="button" class="character-button" data-character="{{ key }}">
+                    <img src="{{ value['Image'] }}" alt="{{ value['Name'] }}'s Image" class="character-image">
+                    <span class="character-name">{{ value["Name"] }}</span>
+                    <ul class="character-items"><i>가져오고 있는 아이템</i>
+                        {% for item in value["Items"] %}
+                        <li>
+                            <img class="icon" src="static/knife_3745877.png" alt="Icon">
+                            <span><i>{{ item }}  </i></span>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                </button>
+            </form>
+            {% endfor %}
+        </div>
+    </div>
+
+        <div class="button-container1">
+            <!-- Button for confirming the selected character -->
+            <button id="confirmButton" class="button1">선택하기</button>
+        </div>
+
+        <!-- Loading Overlay -->
+        <div id="loadingOverlay">
+            <div class="spinner"></div>
+            <div class="loading-text">증거를 수집하는 중...</div>
+        </div>
+
+</body>
+</html>

@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ character["Name"] }} - Details</title>
+    <style>
+        /* Full-page background */
+        body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background: url('{{ url_for("static", filename="background.png") }}') no-repeat center center fixed;
+    background-size: cover;
+    height: 100vh; /* Ensures it covers the viewport height */
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centers horizontally */
+    overflow: hidden; /* Disable scrolling */
+}
+
+.video-container {
+    position: relative; /* Ensures child elements are positioned relative to this */
+    width: 100%; /* Adjust the width of the container */
+    max-width: 550px; /* Set a maximum width */
+    border-radius: 15px;
+    overflow: hidden; /* Ensures rounded corners for children */
+    margin-top: 30px; /* Adds spacing from the top */
+}
+
+
+        /* Character video */
+        .character-video {
+            width: 100%;
+            height: auto; /* Maintain aspect ratio */
+            border-radius: 10px;
+        }
+
+        /* Alibi/hint overlay */
+        .hint-overlay {
+            position: absolute; /* Overlay on top of the video/image */
+            top: 85%; /* Adjust placement on top of the container */
+            left: 50%;
+            transform: translate(-50%, -10%); /* Center horizontally */
+            background: rgba(0, 0, 0, 0.800); /* Dark transparent background for better visibility */
+            color: white;
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-size: 18px;
+            text-align: center;
+            width: 90%; /* Adjust width to align with content */
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Back button */
+    
+
+.button-container {
+    position: absolute; /* Position relative to the container */
+    bottom: 20px; /* Offset from the bottom */
+    right: 20px; /* Offset from the right */
+}
+
+button {
+    width: 200px; /* Set the desired width */
+    height: 50px; /* Set the desired height */
+    background: url('{{ url_for("static", filename="Button.png") }}') no-repeat center center;
+    background-size: contain; /* Ensure the image fits without cropping */
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    font-family: 'GabiaCheongyeon'; /* Apply specified font-family */
+    font-size: 20px; /* Adjust text size */
+    font-weight: 400; /* Apply specified font-weight */
+    line-height: 1; /* Adjust line spacing */
+    text-align: center; /* Center the text horizontally */
+    color: white; /* Text color */
+}
+
+button:hover {
+    opacity: 0.8; /* Slightly fade the button on hover */
+}
+
+        h1 {
+                    font-family: 'ChosunSm';
+                    font-size: 34px;
+                    font-weight: 400;
+                    line-height: 1.2; /* Reduce spacing between lines */
+                    text-align: center; /* Center the title */
+                    margin: 0; /* Remove margin */
+                    margin-bottom: 20px; /* Add space below the title */
+                }
+
+                @font-face {
+    font-family: 'GabiaCheongyeon';
+    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2205@1.0/GabiaCheongyeon.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+
+    </style>
+</head>
+<body>
+    <!-- Video Container -->
+    <div class="video-container">
+        <video autoplay muted loop class="character-video">
+            <source src="{{ url_for('static', filename=character['Video']) }}" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+
+        <!-- Hint/Alibi -->
+        <div class="hint-overlay">
+            {{ character["Name"] }} : {{ alibi }}
+        </div>
+    </div>
+
+        <!-- Back Button -->
+       
+        <div class="button-container">
+            <form id="continueForm" method="get" action="{{ url_for('choose_character') }}">
+                <button type="submit" class="continue-button">돌아가기</button>
+            </form>                        
+        </div>
+        
+</body>
+</html>

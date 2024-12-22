@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html>
+    <link href='https://fonts.googleapis.com/css?family=Julee' rel='stylesheet'>
+    <script>
+document.addEventListener('DOMContentLoaded', () => {
+    const continueButton = document.querySelector('#chooseCharacterForm button'); // "Continue" button
+    const loadingOverlay = document.getElementById('loadingOverlay'); // Loading overlay
+    let isPolling = false; // Prevent overlapping polling
+
+    // Highlight the button initially
+    function highlightButton() {
+        if (continueButton) {
+            continueButton.classList.add('selected'); // Add highlight to the button
+        }
+    }
+
+    // Function to show loading overlay and submit the form
+    function showLoadingAndSubmit() {
+        console.log("Navigating to character selection...");
+        if (loadingOverlay) {
+            loadingOverlay.style.display = 'flex'; // Display the loading screen
+        }
+        continueButton.closest('form').submit(); // Submit the form
+    }
+
+    // Function to "click" the button programmatically
+    function clickButton() {
+        if (continueButton) {
+            console.log("Programmatically clicking Continue button...");
+            showLoadingAndSubmit();
+        }
+    }
+
+    // Keyboard input listener (Enter key)
+    document.addEventListener('keydown', (event) => {
+        if (event.key === 'Enter') {
+            console.log("Enter key pressed.");
+            clickButton();
+        }
+    });
+
+    // Attach click listener to the continue button
+    if (continueButton) {
+        continueButton.addEventListener('click', (event) => {
+            event.preventDefault(); // Prevent default form submission
+            clickButton();
+        });
+
+        highlightButton(); // Highlight the button initially
+    }
+});
+    </script>    
+<style>
+    @font-face {
+        font-family: 'ChosunSm';
+        src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_20-04@1.1/ChosunSm.woff') format('woff');
+        font-weight: normal;
+        font-style: normal;
+    }
+    
+    body {
+    margin: 0; /* Remove default margin */
+    display: flex; /* Use flexbox for centering content */
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+    background: url('static/background.png') no-repeat center center fixed; /* Set the background image */
+    background-size: cover; /* Ensure the image covers the entire viewport */
+    font-family: Arial, sans-serif; /* Use a clean font */
+    color: white; /* Text color for better visibility */
+    overflow-y: auto; /* Enable vertical scrolling */
+}
+
+        .container {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            width: 760px;
+            height: 480px;
+            background: rgba(0, 0, 0, 0.7); /* Semi-transparent black */
+            border-radius: 15px; /* Rounded corners */
+            padding: 20px; /* Add padding inside the container */
+            margin-top: 20px;
+        }
+
+            p {     
+                font-family: 'ChosunSm';
+                font-size: 16px;
+                font-weight: 400;
+                line-height: 26.18px;
+                text-align: center;
+                text-underline-position: from-font;
+                text-decoration-skip-ink: none;
+                margin: 1px 0; /* Add vertical spacing */
+            }
+
+                h1 {
+                    font-family: 'GabiaCheongyeon';
+                    font-size: 28px;
+                    font-weight: 400;
+                    line-height: 1.2; /* Reduce spacing between lines */
+                    text-align: center; /* Center the title */
+                    margin: 0; /* Remove margin */
+                    margin-top: 24px; /* Add space below the title */
+                    margin-bottom: 4px; /* Add space below the title */
+                }
+    
+                .button-container {
+                    position: absolute; /* Position relative to the container */
+                    bottom: 20px; /* Offset from the bottom */
+                    right: 20px; /* Offset from the right */
+                }
+    
+                button {
+                    width: 200px; /* Set the desired width */
+                    height: 50px; /* Set the desired height */
+                    background: url('static/Button.png') no-repeat center center;
+                    background-size: contain; /* Ensure the image fits without cropping */
+                    border: none;
+                    cursor: pointer;
+                    padding: 0;
+                    font-family: 'GabiaCheongyeon'; /* Apply specified font-family */
+                    font-size: 20px; /* Adjust text size */
+                    font-weight: 400; /* Apply specified font-weight */
+                    line-height: 1; /* Adjust line spacing */
+                    text-align: center; /* Center the text horizontally */
+                    color: white; /* Text color */
+                }
+    
+                button:hover {
+                    opacity: 0.8; /* Slightly fade the button on hover */
+                }
+                img {
+                    height: 50vh; /* Full viewport height */
+                }
+
+/* Loading overlay styles */
+        #loadingOverlay {
+            display: none; /* Initially hidden */
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            justify-content: center;
+            align-items: center;
+            z-index: 999;
+        }
+
+        .loading-text {
+            font-family: 'Julee';
+            font-size: 36px;
+            color: white;
+            margin-top: 20px;
+        }
+
+        .spinner {
+            width: 60px;
+            height: 60px;
+            border: 6px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            border-top-color: white;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        @font-face {
+    font-family: 'GabiaCheongyeon';
+    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2205@1.0/GabiaCheongyeon.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+    
+</style>
+</head>
+<body>
+    <div class="container">
+        <!-- Display the single hint image -->
+        <img src="{{ hint_image }}" alt="Hint Image" loading="eager">
+        <h1>중요한 증거를 발견했습니다!</h1>
+        <p>시체는 유명한 배우 <b>{{ victim }}</b>이며, 그는 새벽 3시에서 5시 사이에 살해당했습니다.</p>
+        <p>범인은 그의 배를 칼로 찔렀습니다. <b>{{ hint }}</b></p>
+    </div>
+        <div class="button-container">
+            <form id="chooseCharacterForm" method="get" action="/choose_character">
+                <button type="submit" class="continue-button">계속하기</button>
+            </form>    
+        </div>
+                
+        </body>
+        </html>

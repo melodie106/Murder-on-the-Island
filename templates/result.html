@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Result</title>
+    <link href='https://fonts.googleapis.com/css?family=Julee' rel='stylesheet'>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const loadingOverlay = document.getElementById('loadingOverlay'); // Loading overlay element
+        
+            // Highlight the currently selected button
+            function highlightButton() {
+                buttons.forEach((btn, index) => {
+                    btn.classList.toggle('selected', index === currentIndex);
+                });
+            }
+        
+            // Show loading overlay and submit the current button's form
+            function showLoading() {
+                if (loadingOverlay) {
+                    loadingOverlay.style.display = 'flex'; // Show loading screen
+                }
+            }
+        
+            // Attach loading effect to "다시 시도" button
+            const retryButton = document.querySelector('#continueForm button');
+            if (retryButton) {
+                retryButton.addEventListener('click', (event) => {
+                    showLoading();
+                });
+            }
+        });
+        
+    </script>       
+    <style>
+        @font-face {
+            font-family: 'ChosunSm';
+            src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_20-04@1.1/ChosunSm.woff') format('woff');
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        body {
+    margin: 0; /* Remove default margin */
+    height: 100vh; /* Full viewport height */
+    overflow: hidden; /* Disable scrolling */
+    display: flex; /* Use flexbox for centering */
+    flex-direction: column; /* Stack elements vertically */
+    justify-content: flex-start; /* Align content towards the top */
+    align-items: center; /* Center horizontally */
+    font-family: Arial, sans-serif; /* Use a clean font */
+    color: white; /* Text color for better visibility */
+    padding-top: 20px; /* Add some spacing from the top */
+}
+
+        .success {
+            background: url('static/background_s.png') no-repeat center center fixed;
+            background-size: cover;
+        }
+
+        .failure {
+            background: url('static/background.png') no-repeat center center fixed;
+            background-size: cover;
+        }
+
+        .default {
+            background: url('static/background.png') no-repeat center center fixed;
+            background-size: cover;
+        }
+
+        .container-success {
+            background: #242A3CCC;
+            border-radius: 15px; /* Rounded corners */
+    padding: 20px; /* Inner spacing */
+    text-align: center; /* Center content */
+    width: 80%; /* Adjust width to be responsive */
+    max-width: 600px; /* Limit maximum width */
+        }
+
+        .container-failure {
+            background: rgba(0, 0, 0, 0.7); /* Semi-transparent black */
+            border-radius: 15px; /* Rounded corners */
+    padding: 20px; /* Inner spacing */
+    text-align: center; /* Center content */
+    width: 80%; /* Adjust width to be responsive */
+    max-width: 600px; /* Limit maximum width */
+        }
+
+        .container-default {
+            background: rgba(0, 0, 0, 0.7); /* Default semi-transparent black */
+            border-radius: 15px; /* Rounded corners */
+    padding: 20px; /* Inner spacing */
+    text-align: center; /* Center content */
+    width: 80%; /* Adjust width to be responsive */
+    max-width: 600px; /* Limit maximum width */
+        }
+
+        h1 {
+            font-family: 'GabiaCheongyeon';
+        }
+
+        button {
+            margin-top: 8px;
+            width: 200px;
+            height: 50px;
+            background: url('static/Button.png') no-repeat center center;
+            background-size: contain;
+            border: none;
+            cursor: pointer;
+            padding: 0;
+            font-family: 'GabiaCheongyeon';
+            font-size: 20px;
+            font-weight: 400;
+            text-align: center;
+            color: white;
+        }
+
+        button:hover {
+            opacity: 0.8;
+        }
+
+        img {
+            width: 318px;
+            height: 292px;
+            margin: 0;
+            margin-bottom: 8px;
+        }
+
+        p {
+            font-family: 'ChosunSm';
+            font-size: 18px;
+            font-weight: 400;
+            line-height: 26.18px;
+            text-align: center;
+            margin: 8px 0;
+        }
+
+
+/* Loading overlay styles */
+#loadingOverlay {
+    display: none; /* Initially hidden */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8); /* Semi-transparent dark background */
+    justify-content: center;
+    align-items: center;
+    z-index: 9999; /* Ensure it's above other elements */
+}
+
+.spinner {
+    width: 60px;
+    height: 60px;
+    border: 6px solid rgba(255, 255, 255, 0.3); /* Light border */
+    border-radius: 50%; /* Make it round */
+    border-top-color: white; /* Spinner's active color */
+    animation: spin 1s linear infinite; /* Rotate animation */
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+.loading-text {
+    font-family: 'GabiaCheongyeon';
+    font-size: 36px;
+    color: white;
+    margin-top: 20px;
+}
+
+@font-face {
+    font-family: 'GabiaCheongyeon';
+    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2205@1.0/GabiaCheongyeon.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+
+    </style>
+</head>
+<body class="{% if success %}success{% elif remaining_lives == 0 %}failure{% else %}default{% endif %}">
+    <div class="{% if success %}container-success{% elif remaining_lives == 0 %}container-failure{% else %}container-default{% endif %}">
+        {% if success %}
+        <img src="static/success.png" alt="success">
+        <h1>축하합니다! 성공했습니다!</h1>
+        <p>당신은 살인자를 정확히 찾아냈습니다!</p>
+        <form method="get" action="/">
+            <button id="interfaceButton">다시 시작</button>
+        </form>
+        {% elif remaining_lives == 0 %}
+        <img src="static/fail.png" alt="fail">
+        <h1>실패했습니다!</h1>
+        <p>당신은 살인범을 잡지 못했고 이제 섬에 갇혀 있습니다. 
+            살인범은 또 다른 범죄를 저지를 준비가 되어 있습니다.</p>
+        {% else %}
+        <h1>잘못된 선택입니다!</h1>
+        <p>남은 기회: {{ remaining_lives }}</p>
+        <p>이 사람은 살인자가 아닙니다!다시 한 번 생각하고 힌트를 더 생각해 보세요. 
+            살인범은 아직 우리 사이에 있으며 다시 죽일 준비가 되어 있습니다.다른 사람이 죽기 전에 우리를 구해주세요!</p>
+        {% endif %}
+    </div>
+    {% if restart %}
+    <form id="continueForm" method="get" action="/">
+        <button>다시 시작</button>
+    </form>
+    {% elif not success %}
+    <form id="continueForm" method="get" action="/hint">
+        <input type="hidden" name="regenerate_hint" value="true">
+        <button id="retryButton">다시 시도</button>
+    </form>      
+    {% endif %}   
+    
+     <!-- Loading Overlay -->
+     <div id="loadingOverlay">
+        <div class="spinner"></div>
+        <div class="loading-text">단서 생성 중...</div>
+    </div>
+</body>
+</html>

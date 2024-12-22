@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Start Game</title>
+    <link href='https://fonts.googleapis.com/css?family=Julee' rel='stylesheet'>
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+    let currentIndex = 0; // Start at the first button
+    const startButton = document.querySelector('.start-button');
+    const loadingOverlay = document.getElementById('loadingOverlay');
+
+    // Function to show loading overlay and submit the form
+    function showLoadingAndSubmit() {
+        console.log("Starting the game..."); // Debugging
+        if (loadingOverlay) {
+            loadingOverlay.style.display = 'flex'; // Show the loading screen
+        }
+        startButton.closest('form').submit(); // Submit the form
+    }
+
+    let isPolling = false; // Prevent overlapping requests
+
+    // Attach click listener to the start button
+    startButton.addEventListener('click', (event) => {
+        event.preventDefault(); // Prevent default form submission
+        showLoadingAndSubmit();
+    });
+
+    // Poll for Arduino input
+    setInterval(handleArduinoInput, 50); // Poll every 25ms
+
+
+    
+});
+
+    </script>
+    
+    <style>
+        body {
+            margin: 0; /* Remove default margin */
+            display: flex; /* Use flexbox for centering content */
+            justify-content: center; /* Center horizontally */
+            align-items: center; /* Center vertically */
+            background: url('static/background.png') no-repeat center center fixed; /* Set the background image */
+            background-size: cover; /* Ensure the image covers the entire viewport */
+            font-family: Arial, sans-serif; /* Use a clean font */
+            color: white; /* Text color for better visibility */
+            overflow-y: auto; /* Enable vertical scrolling */
+        }
+
+        .container {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            width: 805px;
+            height: 500px;
+            background: rgba(0, 0, 0, 0.7); /* Semi-transparent black */
+            border-radius: 15px; /* Rounded corners */
+            padding: 30px; /* Add padding inside the container */
+            margin-top: 30px;
+        }
+
+        h1 {
+            font-family: 'GabiaCheongyeon';
+            font-size: 50px;
+            font-weight: 400;
+            line-height: 1; /* Reduce spacing between lines */
+            text-align: center;
+            margin: 0; /* Remove margin */
+            margin-bottom: 8px; /* Add a small space below */
+        }
+
+        h2 {
+            font-family: 'GabiaCheongyeon';
+            font-size: 26px;
+            font-weight: 400;
+            line-height: 1.2; /* Reduce spacing between lines */
+            text-align: center;
+            margin: 0; /* Remove margin */
+            margin-bottom: 8px; /* Add a small space below */
+        }
+
+        img {
+            width: 443px;
+            height: 375px;
+            margin: 0; /* Remove default margin */
+            margin-bottom: 8px; /* Add spacing below the image */
+        }
+
+        button {
+            position: relative;
+            width: 200px; /* Set the desired width */
+            aspect-ratio: 3 / 1; /* Match the aspect ratio of the image */
+            background: url('static/Button.png') no-repeat center center;
+            background-size: contain; /* Ensure the image fits without cropping */
+            border: none;
+            cursor: pointer;
+            padding: 0;
+            font-family: 'GabiaCheongyeon'; /* Apply specified font-family */
+            font-size: 24px; /* Apply specified font-size */
+            font-weight: 400; /* Apply specified font-weight */
+            line-height: 47.12px; /* Apply specified line-height */
+            text-align: center; /* Center the text horizontally */
+            color: white; /* Text color */
+            text-underline-position: from-font; /* Underline position */
+            text-decoration-skip-ink: none; /* Prevent skipping ink */
+            overflow: hidden; /* Prevent text overflow */
+        }
+
+        button:hover {
+            opacity: 0.8; /* Slightly fade the button on hover */
+        }
+
+        /* Loading overlay styles */
+        #loadingOverlay {
+            display: none; /* Initially hidden */
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            justify-content: center;
+            align-items: center;
+            z-index: 999;
+        }
+
+        .loading-text {
+            font-family: 'GabiaCheongyeon';
+            font-size: 36px;
+            color: white;
+            margin-top: 20px;
+        }
+
+        .spinner {
+            width: 60px;
+            height: 60px;
+            border: 6px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            border-top-color: white;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        @font-face {
+    font-family: 'GabiaCheongyeon';
+    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2205@1.0/GabiaCheongyeon.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+    </style>
+</head>
+<body>
+    <!-- Container with rectangle and content -->
+    <div class="container">
+        <h1>살인 미스터리</h1>
+        <h2>범인을 찾을 수 있을까?</h2>
+        <img src="static/homepage.png" alt="homepage">
+        <form id="startForm" method="post" action="/story">
+            <button type="submit" class="start-button">게임 시작</button>
+        </form>
+    </div>
+</body>
+</html>
+
+<!-- loading time to add illustration --> 
