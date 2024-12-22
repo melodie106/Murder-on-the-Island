@@ -1,4 +1,14 @@
-**Murder On The Island: 생성형 AI를 활용한 추리 게임**
-소개 : 본 작품은 AI 기술을 활용하여 시나리오, 이미지 영상 등 게임의 모든 요소를 생성하는 몰입형 추리 웹 게임이다. 
-생성형 AI를 기반으로 스토리 전개와 시각적 연출을 구현하였으며, 게임 내 상호작용을 통해 플레이어가 직접 사건을 해결하도록 설계되었다. 
-본 작품은 AI 기술의 게임 개발 분야에서의 창의적 활용 가능성과 게임 디자인 및 시나리오 제작 분야에서의 실험적 사례를 제시하고자 한다.
+# **Murder On The Island: A Detective Game Powered by Generative AI**
+
+## **Introduction**  
+*Murder On The Island* is an immersive web-based detective game where all elements—scenarios, visuals, and storytelling—are generated using cutting-edge generative AI technology.  
+
+The game leverages AI to dynamically develop storylines and visual effects, enabling players to interactively solve mysteries. This project highlights the creative potential of AI in game development and serves as an experimental case study in game design and narrative creation.  
+
+## **Features**  
+- **AI-Generated Content:** Fully automated generation of scenarios, visuals, and story progression.  
+- **Interactive Gameplay:** Players take an active role in solving mysteries through interactive features.  
+- **Innovative Design:** Explores the intersection of AI, game design, and storytelling.  
+
+## **Objective**  
+This project aims to showcase the possibilities of AI in game development and provide an experimental approach to designing engaging and innovative narrative experiences.  
