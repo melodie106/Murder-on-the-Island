@@ -10,7 +10,7 @@ app = Flask(__name__, template_folder='templates')
 app.secret_key = 'a_strong_secret_key_here'  # Replace with a secure key
  
  # OpenAI API Key
-API_KEY = "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"
+API_KEY = "xx"
 EXTERNAL_API_URL = "https://api.openai.com/v1/chat/completions"
 
 # Global Variables
