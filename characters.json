@@ -1,0 +1,146 @@
+{
+  "Character A": {
+    "Name": "테일러 스위프트",
+    "Gender": "여자",
+    "Personality": "매력적이고 재치가 넘칩니다. 타인을 자연스럽게 격려하지만 조종적일 수 있습니다. 자신과 소중한 사람들을 강하게 보호합니다.",
+    "Work": "싱어송라이터",
+    "Age": 34,
+    "Motive of Crime": "가까운 친구가 그녀의 신뢰를 배반하고 개인적인 비밀을 대중에게 폭로했습니다. 깊은 상처와 굴욕감을 느낀 그녀는 절망 속에서 분노를 터뜨렸습니다.",
+    "Items": ["하이힐", "야구 방망이", "차 한 잔"],
+    "Image": "static/a.webp",
+    "Video": "A.mp4",
+    "ItemImages": {
+      "하이힐": "static/items/하이힐.webp",
+      "야구 방망이": "static/items/야구 방망이.webp",
+      "차 한 잔": "static/items/차 (한잔)  .jpg"
+    }
+  },
+  "Character B": {
+    "Name": "비욘세",
+    "Gender": "여자",
+    "Personality": "자신감 있고 우아합니다. 품위를 유지하며 존경을 받으며 정상에 있는 위치를 소중히 여깁니다.",
+    "Work": "가수, 프로듀서",
+    "Age": 43,
+    "Motive of Crime": "젊은 연예인이 그녀를 무시하며 '어제의 스타'라고 조롱했습니다. 분노에 휩싸인 그녀는 격한 감정으로 폭발했습니다.",
+    "Items": ["마이크", "장갑", "선글라스"],
+    "Image": "static/b.webp",
+    "Video": "B.mp4",
+    "ItemImages": {
+      "마이크": "static/items/마이크.webp",
+      "장갑": "static/items/장갑.jpg",
+      "선글라스": "static/items/선글라스.webp"
+    }
+  },
+  "Character C": {
+    "Name": "로버트 다우니 주니어",
+    "Gender": "남자",
+    "Personality": "매력적이고 재치 있습니다. 강한 목적과 리더십을 가진 천부적인 지도자입니다.",
+    "Work": "배우",
+    "Age": 59,
+    "Motive of Crime": "제작진이 그의 계약을 종료하려 했으며, 이는 그의 은퇴 전 마지막 계약이었습니다. 분노에 휩싸인 그는 범행을 저질렀습니다.",
+    "Items": ["아이언맨 헬멧", "선글라스", "체인"],
+    "Image": "static/c.webp",
+    "Video": "C.mp4",
+    "ItemImages": {
+      "아이언맨 헬멧": "static/items/아이언맨 헬멧.jpg",
+      "선글라스": "static/items/선글라스.webp",
+      "체인": "static/items/체인.jpg"
+    }
+  },
+  "Character D": {
+    "Name": "안젤리나 졸리",
+    "Gender": "여자",
+    "Personality": "열정적이고 강렬합니다. 그녀의 동기를 숨기며 개인적인 목표를 위해 움직입니다.",
+    "Work": "배우, 활동가",
+    "Age": 49,
+    "Motive of Crime": "다른 스타가 그녀의 평판을 훼손하려고 했습니다. 굴욕감과 압박을 느낀 그녀는 통제할 수 없는 분노를 터뜨렸습니다.",
+    "Items": ["권총", "유틸리티 벨트", "가죽 장갑"],
+    "Image": "static/d.webp",
+    "Video": "D.mp4",
+    "ItemImages": {
+      "권총": "static/items/권총.jpg",
+      "유틸리티 벨트": "static/items/유틸리티 벨트.jpg",
+      "가죽 장갑": "static/items/장갑.jpg"
+    }
+  },
+  "Character E": {
+    "Name": "아리아나 그란데",
+    "Gender": "여자",
+    "Personality": "우아하고 자신감 넘칩니다. 탁월함을 추구하며 강한 야망을 보여줍니다.",
+    "Work": "배우, 가수",
+    "Age": 31,
+    "Motive of Crime": "조수가 그녀의 스타일을 모방하고 그녀의 경력을 훼손했습니다. 아리아나는 배신을 발견하고 무대 뒤에서 대치하다 폭발했습니다.",
+    "Items": ["마이크", "하이힐", "포니테일 고무줄"],
+    "Image": "static/e.webp",
+    "Video": "E.mp4",
+    "ItemImages": {
+      "마이크": "static/items/마이크.webp",
+      "하이힐": "static/items/하이힐.webp",
+      "포니테일 고무줄": "static/items/포니테일 고무줄.webp"
+    }
+  },
+  "Character F": {
+    "Name": "크리스 헴스워스",
+    "Gender": "남자",
+    "Personality": "친절하고 영웅적입니다. 매력 뒤에 날카롭고 계산적인 사고를 숨기고 있습니다.",
+    "Work": "배우",
+    "Age": 41,
+    "Motive of Crime": "다른 스타가 생방송 중 그의 외모를 조롱하며 '너무 근육질이다'고 비웃었습니다. 굴욕감을 느낀 그는 무대 뒤에서 분노를 터뜨렸습니다.",
+    "Items": ["오래된 전화선", "위스키 잔", "시계"],
+    "Image": "static/f.webp",
+    "Video": "F.mp4",
+    "ItemImages": {
+      "오래된 전화선": "static/items/오래된 전화선.avif",
+      "위스키 잔": "static/items/위스키 잔.webp",
+      "시계": "static/items/시계.webp"
+    }
+  },
+  "Character P": {
+    "Name": "이정재",
+    "Gender": "남자",
+    "Personality": "분석적이고 철두철미함.",
+    "Work": "기업 이사",
+    "Age": 42,
+    "Motive of Crime": "회사의 비리를 폭로하려는 동료를 저지하기 위해 갈등 끝에 사건이 발생.",
+    "Items": ["가죽지갑", "선글라스", "열쇠고리"],
+    "Image": "static/P.webp",
+    "Video": "P.mp4",
+    "ItemImages": {
+      "가죽지갑": "static/items/볼펜.jpg",
+      "선글라스": "static/items/선글라스.webp",
+      "열쇠고리": "static/items/열쇠고리.jpg"
+    }
+    },
+    "Character Y": {
+      "Name": "제시",
+      "Gender": "여자",
+      "Personality": "대담하고 솔직하며 강하게 독립적인 성격입니다. 다소 위압적으로 느껴질 수 있지만 따뜻한 마음을 가지고 있습니다.",
+      "Work": "가수/래퍼",
+      "Age": 35,
+      "Motive of Crime": "제시는 이전에 함께 작업했던 동료에게 협박을 당하고 있던 가까운 친구를 보호하기 위해 행동했습니다.",
+      "Items": ["선글라스", "시계", "마이크"],
+      "Image": "static/Y.webp",
+      "Video": "Y.webp",
+    "ItemImages": {
+      "선글라스": "static/items/선글라스.webp",
+      "시계": "static/items/시계.webp",
+      "마이크": "static/items/마이크.webp"        
+    }
+    },
+    "Character Z": {
+      "Name": "싸이",
+      "Gender": "남자",
+      "Personality": "유쾌하고, 예측 불가능하며, 재치 있는 성격입니다. 누구에게나 매력을 발산하는 능력으로 잘 알려져 있습니다.",
+      "Work": "가수",
+      "Age": 47,
+      "Motive of Crime": "싸이는 누군가가 자신의 음반사 수익을 빼돌리고 있다는 사실을 알아내고, 그들의 범죄를 폭로함으로써 교훈을 주고자 했습니다.",
+      "Items": ["안경", "마이크", "유리장"],
+      "Image": "static/Z.webp",
+      "Video": "Z.mp4",
+    "ItemImages": {
+      "안경": "static/items/안경.png",
+      "마이크": "static/items/마이크.webp",
+      "유리장": "static/items/유리장.jpg"        
+    }
+  }
+}
